@@ -1,0 +1,38 @@
+name: Checkov Scan
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  checkov_scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install Checkov
+        run: pip install checkov
+
+      - name: Run Checkov scan
+        run: checkov -d . --output-file-path checkov_report.txt
+        continue-on-error: true
+
+      - name: Upload Checkov report
+        uses: actions/upload-artifact@v2
+        with:
+          name: checkov-report
+          path: checkov_report.txt
