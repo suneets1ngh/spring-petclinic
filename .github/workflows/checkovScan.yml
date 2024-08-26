@@ -27,9 +27,12 @@ jobs:
 
       - name: Install Checkov
         run: pip install checkov
-
+        
+      - name: List files
+        run: ls -R
+       
       - name: Run Checkov scan
-        run: checkov -d ./spring-petclinic --output-file-path checkov_report.txt
+        run: checkov -d https://github.com/suneets1ngh/spring-petclinic --output-file-path checkov_report.txt
         continue-on-error: true
 
       - name: Upload Checkov report
