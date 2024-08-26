@@ -14,5 +14,12 @@ jobs:
         fetch-depth: 0
     - name: Secret Scanning
       uses: trufflesecurity/trufflehog@main
+        
+    - name: Upload TruffleHog Report
+      uses: actions/upload-artifact@v2
       with:
-        extra_args: 
+        name: trufflehog-report
+        path: ${{ steps.trufflehog.outputs.report_path }}
+
+
+
