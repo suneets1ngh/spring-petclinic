@@ -27,7 +27,7 @@ jobs:
       run: wget https://github.com/aquasecurity/trivy/releases/download/v0.35.0/trivy_0.35.0_Linux-64bit.deb && sudo dpkg -i trivy_0.35.0_Linux-64bit.deb
 
     - name: Run Trivy Image Scan
-      run: trivy image my-python-app:latest --format json --output trivy-image-report.json
+      run: trivy image python:3.4-alpine --format json --output trivy-image-report.json
 
     - name: Upload Trivy Image Report
       uses: actions/upload-artifact@v2
