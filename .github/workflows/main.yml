@@ -27,7 +27,7 @@ jobs:
     - name: Run TruffleHog Secret Scanning
       id: trufflehog
       run: |
-        trufflehog --json --no-git --exclude_path .github . > trufflehog-report.json
+        trufflehog --json --no-git . > trufflehog-report.json
         echo "::set-output name=report_path::trufflehog-report.json"
 
     - name: Upload TruffleHog Report
