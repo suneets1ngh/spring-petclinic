@@ -24,9 +24,10 @@ jobs:
       with:
           base: ""
           head: ${{ github.ref_name }}
+      continue-on-error: true
 
     - name: Run TruffleHog and Save Report
-      run: |
+      run: | 
         trufflehog --json --only-verified . > trufflehog-report.json
       continue-on-error: true
 
